@@ -14,13 +14,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        // User::factory(10)->create();
 
-        User::factory()->create([
-            'username' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()->create([
+        //     'username' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
 
-        Post::factory(10)->create();
+
+        // $user = new User();
+        // $user->username = 'Doflamingo ';
+        // $user->email = 'don@doffy.joker';
+        // $user->password = 'hashThisIsHashedOnlyAndSample';
+        // $user->save();  
+
+        
+        dump(User::all()->toArray());
+
+        // Post::factory(10)->create();
+        $doffy= User::find(3);
+
+        $post = new Post();
+        $post->title = 'Got Smoked by Gear 4 Luffy';
+        $post->content = 'Sample Content Sample Content Sample Content Sample Content Sample Content';
+        $post->user()->associate($doffy);
+        $post->save();
+        
+        dump(Post::all()->toArray());
     }
 }

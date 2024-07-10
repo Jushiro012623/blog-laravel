@@ -19,6 +19,7 @@
             <label for="content" class="text-xl font-medium ">Content</label>
             <textarea name="content" id="content" class="border border-slate-500 h-32 outline-none rounded-md p-2 resize-none"></textarea>
         </div>
+        <input type="hidden" name="user_id" value="{{ auth()->user()->id}}"> 
         <div>
             <button type="submit" class="w-32 mr-5 text-white tracking-wider rounded-md bg-sky-500 py-2 px-7 text-lg font-medium">Save</button>
             <a href="/blog" class="text-lg font-medium">Cancel</a>

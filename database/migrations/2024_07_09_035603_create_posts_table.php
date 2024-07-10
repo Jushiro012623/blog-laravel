@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('title');
             $table->longText('content');
+            $table->bigInteger('user_id');
             $table->rememberToken();
             $table->timestamps();
         });

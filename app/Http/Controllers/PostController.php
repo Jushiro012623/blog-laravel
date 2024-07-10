@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -12,6 +13,9 @@ class PostController extends Controller
     public function show(){
         
         $allpost = Post::orderBy('created_at' , 'desc')->paginate(3);
+        // $id = Post::find('user_id');
+        // $postedBy = User::all();
+        // 'postedBy' => $postedBy
         return view('pages.blog' ,['allpost' => $allpost]);
     }
     
@@ -19,9 +23,10 @@ class PostController extends Controller
     public function store(Request $request){
         $validated = $request->validate([
             'title' => ['required'],
-            'content' => ['required']
+            'content' => ['required'],
+            'user_id' => ['required'] 
         ]);
-        $post = Post::create($validated);
+        Post::create($validated);
         
         return redirect('/')->with('success', 'Post Created');
     }
@@ -37,5 +42,12 @@ class PostController extends Controller
             abort(404);
         }
         return view('pages.viewpost' ,['post' => $post]);
+    }
+
+    public function viewuser($id){
+        $posts = Post::where('user_id', $id)->get();
+        $userName = User::find($id);
+        // dd($userName);
+        return view('pages.viewprofile',['posts' => $posts , 'userName' => $userName]);
     }
 }
