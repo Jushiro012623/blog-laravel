@@ -24,22 +24,22 @@ class DatabaseSeeder extends Seeder
 
         // $user = new User();
         // $user->username = 'Doflamingo ';
-        // $user->email = 'don@doffy.joker';
+        // $user->email = 'don@doffy.jokesr';
         // $user->password = 'hashThisIsHashedOnlyAndSample';
-        // $user->save();  
+        // $user->save();
 
-        
-        dump(User::all()->toArray());
+
+        // dump(User::all()->toArray());
 
         // Post::factory(10)->create();
-        $doffy= User::find(3);
+        // $doffy = User::find(3);
 
         $post = new Post();
         $post->title = 'Got Smoked by Gear 4 Luffy';
         $post->content = 'Sample Content Sample Content Sample Content Sample Content Sample Content';
-        $post->user()->associate($doffy);
+        $post->user()->associate(1);
         $post->save();
-        
+
         dump(Post::all()->toArray());
     }
 }
